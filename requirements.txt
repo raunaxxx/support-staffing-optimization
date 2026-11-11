@@ -1,0 +1,5 @@
+numpy>=1.26
+pandas>=2.2
+simpy>=4.1
+pulp>=2.8
+matplotlib>=3.8

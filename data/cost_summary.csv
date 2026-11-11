@@ -1,0 +1,4 @@
+channel,baseline_agent_hours,optimal_agent_hours,hourly_cost,baseline_weekly_cost,optimal_weekly_cost,weekly_savings,savings_pct,baseline_hours_below_requirement
+phone,12280.0,1768.0,28.0,343840.0,49504.0,294336.0,85.6,0
+chat,14568.0,2136.0,24.0,349632.0,51264.0,298368.0,85.3,0
+email,13160.0,2064.0,22.0,289520.0,45408.0,244112.0,84.3,0

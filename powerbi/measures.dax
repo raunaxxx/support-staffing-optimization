@@ -1,0 +1,60 @@
+// Paste into the coverage and interval_facts tables after loading the CSVs.
+// Relationship: interval_facts[interval_key] (many) -> coverage[interval_key] (one).
+// Monday = 0 on both tables. interval_key looks like phone-0-14.
+
+// --- interval_facts (historical baseline) ---
+
+Offered = SUM ( interval_facts[arrivals] )
+
+Handled = SUM ( interval_facts[handled] )
+
+Abandoned Contacts = SUM ( interval_facts[abandoned] )
+
+Within SLA = SUM ( interval_facts[within_sla] )
+
+SLA % =
+DIVIDE ( [Within SLA], [Offered] )
+
+Abandon % =
+DIVIDE ( [Abandoned Contacts], [Offered] )
+
+ASA sec =
+DIVIDE ( SUM ( interval_facts[answered_wait_sec] ), [Handled] )
+
+AHT sec =
+DIVIDE ( SUM ( interval_facts[handle_sec] ), [Handled] )
+
+// --- coverage (weekly plan: requirement, baseline, optimal) ---
+// Summing rostered agents across hours equals weekly paid agent-hours.
+
+Baseline Agent Hours =
+SUM ( coverage[baseline_rostered] )
+
+Optimal Agent Hours =
+SUM ( coverage[optimal_rostered] )
+
+Required Agent Hours =
+SUM ( coverage[rostered_required] )
+
+Baseline Weekly Cost =
+SUMX ( coverage, coverage[baseline_rostered] * coverage[hourly_cost] )
+
+Optimal Weekly Cost =
+SUMX ( coverage, coverage[optimal_rostered] * coverage[hourly_cost] )
+
+Weekly Savings =
+[Baseline Weekly Cost] - [Optimal Weekly Cost]
+
+Savings % =
+DIVIDE ( [Weekly Savings], [Baseline Weekly Cost] )
+
+Hours Below Requirement =
+COUNTROWS (
+    FILTER (
+        coverage,
+        coverage[baseline_logged_in] < coverage[logged_in_required]
+    )
+)
+
+Logged-in Gap =
+SUM ( coverage[logged_in_required] ) - SUM ( coverage[baseline_logged_in] )
