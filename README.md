@@ -10,7 +10,19 @@ PuLP
 SimPy
 Power BI
 Project Workflow
-Customer Contacts → Demand Forecasting → Erlang-C Queueing Model → Staffing Requirements → Workforce Optimization → Simulation Validation → Power BI Dashboard
+Customer Contacts
+↓
+Demand Forecasting
+↓
+Erlang-C Queueing Model
+↓
+Staffing Requirements
+↓
+Workforce Optimization
+↓
+Simulation Validation
+↓
+Power BI Dashboard
 
 Features
 Synthetic multi-channel support data generation
@@ -40,7 +52,12 @@ Baseline vs optimized staffing cost
 Staffing Requirements
 Recommended agents by channel and hour
 Project Structure
-support-staffing/ ├── data/ ├── sql/ ├── src/ ├── notebooks/ ├── powerbi/ └── README.md
-
+support-staffing/
+├── data/
+├── sql/
+├── src/
+├── notebooks/
+├── powerbi/
+└── README.md
 Author
-Raunak 
+Raunak
